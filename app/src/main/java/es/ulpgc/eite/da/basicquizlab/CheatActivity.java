@@ -54,6 +54,11 @@ public class CheatActivity extends AppCompatActivity {
           answerText.setText(R.string.true_text);
         }
       }else{
+        answerText.setText(R.string.empty_text);
+       /* yesButton.setEnabled(false);
+        noButton.setEnabled(false);
+
+        returnCheatedStatus();*/
 
         }
 
@@ -95,6 +100,7 @@ public class CheatActivity extends AppCompatActivity {
   protected void onResume() {
     super.onResume();
     Log.d(TAG, "onResume()");
+
   }
 
   @Override
