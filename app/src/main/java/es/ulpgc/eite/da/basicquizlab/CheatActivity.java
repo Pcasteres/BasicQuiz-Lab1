@@ -18,6 +18,7 @@ public class CheatActivity extends AppCompatActivity {
 
   public final static String STATE_ANSWER = "STATE_ANSWER";
   public final static String STATE_YES = "STATE_YES";
+  public final static String STATE_CHEATED = "STATE_CHEATED";
 
 
   private Button noButton, yesButton;
@@ -32,9 +33,11 @@ public class CheatActivity extends AppCompatActivity {
     setContentView(R.layout.activity_cheat);
 
     getSupportActionBar().setTitle(R.string.cheat_title);
+
     if (savedInstanceState != null) {
       currentAnswer=savedInstanceState.getInt(STATE_ANSWER);
       yesButtonEnabled=savedInstanceState.getBoolean(STATE_YES);
+      answerCheated=savedInstanceState.getBoolean(STATE_CHEATED);
 
     }
 
@@ -51,7 +54,7 @@ public class CheatActivity extends AppCompatActivity {
           answerText.setText(R.string.true_text);
         }
       }else{
-          returnCheatedStatus();
+
         }
 
       }
@@ -100,6 +103,7 @@ public class CheatActivity extends AppCompatActivity {
     Log.d(TAG, "onSaveInstanceState()");
     //El estado de la respuesta
     outState.putInt(STATE_ANSWER, currentAnswer);
+    outState.putBoolean(STATE_CHEATED, answerCheated);
     //El estado de los botones
     outState.putBoolean(STATE_YES, yesButtonEnabled);
 
