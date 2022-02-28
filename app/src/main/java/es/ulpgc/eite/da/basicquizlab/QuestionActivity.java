@@ -54,7 +54,6 @@ public class QuestionActivity extends AppCompatActivity {
 
       // has contestado a la pregunta
       if(nextButtonEnabled) {
-
         if(trueButtonEnabled) { // si has contestado true
           if(replyArray[questionIndex] == 1) {
             replyText.setText(R.string.correct_text);
