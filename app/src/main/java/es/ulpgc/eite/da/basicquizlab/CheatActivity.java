@@ -42,7 +42,7 @@ public class CheatActivity extends AppCompatActivity {
     }
 
     initLayoutData();
-    updateLayoutContent();
+    //updateLayoutContent();
     linkLayoutComponents();
     enableLayoutButtons();
 
@@ -55,10 +55,7 @@ public class CheatActivity extends AppCompatActivity {
         }
       }else{
         answerText.setText(R.string.empty_text);
-       /* yesButton.setEnabled(false);
-        noButton.setEnabled(false);
 
-        returnCheatedStatus();*/
 
         }
 
@@ -96,25 +93,6 @@ public class CheatActivity extends AppCompatActivity {
     finish();
   }
 
-  private void updateLayoutContent() {
-    if(!yesButtonEnabled){
-      answerText.setText(R.string.empty_text);
-    }
-    yesButton.setEnabled(yesButtonEnabled);
-    noButton.setEnabled(!yesButtonEnabled);
-   /* questionText.setText(questionArray[questionIndex]);
-
-    // if(nextButtonEnabled == false)
-    if(!nextButtonEnabled) {
-      replyText.setText(R.string.empty_text);
-    }
-
-    nextButton.setEnabled(nextButtonEnabled);
-    cheatButton.setEnabled(!nextButtonEnabled);
-    falseButton.setEnabled(!nextButtonEnabled);
-    trueButton.setEnabled(!nextButtonEnabled);*/
-  }
-
   @Override
   protected void onResume() {
     super.onResume();
@@ -131,8 +109,6 @@ public class CheatActivity extends AppCompatActivity {
     outState.putBoolean(STATE_CHEATED, answerCheated);
     //El estado de los botones
     outState.putBoolean(STATE_YES, yesButtonEnabled);
-
-
 
   }
 
@@ -168,16 +144,15 @@ public class CheatActivity extends AppCompatActivity {
 
     }
     yesButtonEnabled = true;
-    updateLayoutContent();
+
   }
 
   private void onNoButtonClicked() {
-    /*yesButton.setEnabled(false);
-    noButton.setEnabled(false);*/
+    yesButton.setEnabled(false);
+    noButton.setEnabled(false);
 
     returnCheatedStatus();
     yesButtonEnabled = false;
-    updateLayoutContent();
   }
 
 }
