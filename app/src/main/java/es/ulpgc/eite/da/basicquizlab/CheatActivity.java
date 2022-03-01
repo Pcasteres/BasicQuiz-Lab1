@@ -16,7 +16,7 @@ public class CheatActivity extends AppCompatActivity {
   public final static String EXTRA_ANSWER = "EXTRA_ANSWER";
   public final static String EXTRA_CHEATED = "EXTRA_CHEATED";
 
-  public final static String STATE_ANSWER = "STATE_ANSWER";
+  //public final static String STATE_ANSWER = "STATE_ANSWER";
   public final static String STATE_YES = "STATE_YES";
   public final static String STATE_CHEATED = "STATE_CHEATED";
 
@@ -35,14 +35,14 @@ public class CheatActivity extends AppCompatActivity {
     getSupportActionBar().setTitle(R.string.cheat_title);
 
     if (savedInstanceState != null) {
-      currentAnswer=savedInstanceState.getInt(STATE_ANSWER);
+      currentAnswer=savedInstanceState.getInt(EXTRA_ANSWER);
       yesButtonEnabled=savedInstanceState.getBoolean(STATE_YES);
       answerCheated=savedInstanceState.getBoolean(STATE_CHEATED);
 
     }
 
     initLayoutData();
-
+    updateLayoutContent();
     linkLayoutComponents();
     enableLayoutButtons();
 
@@ -96,6 +96,25 @@ public class CheatActivity extends AppCompatActivity {
     finish();
   }
 
+  private void updateLayoutContent() {
+    if(!yesButtonEnabled){
+      answerText.setText(R.string.empty_text);
+    }
+    yesButton.setEnabled(yesButtonEnabled);
+    noButton.setEnabled(!yesButtonEnabled);
+   /* questionText.setText(questionArray[questionIndex]);
+
+    // if(nextButtonEnabled == false)
+    if(!nextButtonEnabled) {
+      replyText.setText(R.string.empty_text);
+    }
+
+    nextButton.setEnabled(nextButtonEnabled);
+    cheatButton.setEnabled(!nextButtonEnabled);
+    falseButton.setEnabled(!nextButtonEnabled);
+    trueButton.setEnabled(!nextButtonEnabled);*/
+  }
+
   @Override
   protected void onResume() {
     super.onResume();
@@ -108,7 +127,7 @@ public class CheatActivity extends AppCompatActivity {
     super.onSaveInstanceState(outState);
     Log.d(TAG, "onSaveInstanceState()");
     //El estado de la respuesta
-    outState.putInt(STATE_ANSWER, currentAnswer);
+    outState.putInt(EXTRA_ANSWER, currentAnswer);
     outState.putBoolean(STATE_CHEATED, answerCheated);
     //El estado de los botones
     outState.putBoolean(STATE_YES, yesButtonEnabled);
@@ -149,14 +168,16 @@ public class CheatActivity extends AppCompatActivity {
 
     }
     yesButtonEnabled = true;
+    updateLayoutContent();
   }
 
   private void onNoButtonClicked() {
-    yesButton.setEnabled(false);
-    noButton.setEnabled(false);
+    /*yesButton.setEnabled(false);
+    noButton.setEnabled(false);*/
 
     returnCheatedStatus();
     yesButtonEnabled = false;
+    updateLayoutContent();
   }
 
 }
