@@ -42,21 +42,22 @@ public class CheatActivity extends AppCompatActivity {
     }
 
     initLayoutData();
-    //updateLayoutContent();
     linkLayoutComponents();
     enableLayoutButtons();
 
     if (savedInstanceState != null) {
+      //Si se pulsa yes se pone la repuesta
       if(yesButtonEnabled) {
+        yesButton.setEnabled(false);
+        noButton.setEnabled(false);
         if (currentAnswer == 0) {
           answerText.setText(R.string.false_text);
         } else {
           answerText.setText(R.string.true_text);
         }
       }else{
+        //Si no, la respuesta se queda vacía
         answerText.setText(R.string.empty_text);
-
-
         }
 
       }
